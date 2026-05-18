@@ -1,4 +1,8 @@
+import { useLanguage } from '../context/LanguageContext'
+
 export default function Navbar() {
+  const { lang, toggle, t } = useLanguage()
+
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 border-b border-forge-border/50 backdrop-blur-md bg-forge-bg/80">
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
@@ -14,12 +18,24 @@ export default function Navbar() {
           </span>
         </div>
 
-        <a
-          href="#submit"
-          className="btn-fire text-sm px-4 py-2 hidden sm:block"
-        >
-          Enviar minha dor
-        </a>
+        <div className="flex items-center gap-3">
+          {/* Language toggle */}
+          <button
+            onClick={toggle}
+            className="flex items-center gap-1.5 text-xs font-semibold text-gray-500 hover:text-white border border-forge-border hover:border-gray-600 rounded-lg px-3 py-1.5 transition-all duration-150"
+            title={lang === 'pt' ? 'Switch to English' : 'Mudar para Português'}
+          >
+            <span className="text-sm leading-none">{lang === 'pt' ? '🇧🇷' : '🇺🇸'}</span>
+            {lang === 'pt' ? 'PT' : 'EN'}
+          </button>
+
+          <a
+            href="#submit"
+            className="btn-fire text-sm px-4 py-2 hidden sm:block"
+          >
+            {t.navbar.cta}
+          </a>
+        </div>
       </div>
     </nav>
   )

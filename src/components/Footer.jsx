@@ -1,4 +1,9 @@
+import { useLanguage } from '../context/LanguageContext'
+
 export default function Footer() {
+  const { t } = useLanguage()
+  const f = t.footer
+
   return (
     <footer className="border-t border-forge-border py-12">
       <div className="max-w-6xl mx-auto px-6">
@@ -15,12 +20,12 @@ export default function Footer() {
           </div>
 
           <p className="text-gray-700 text-xs text-center">
-            Transformando dores reais em produtos digitais. © {new Date().getFullYear()} Seimons Forge.
+            {f.tagline} © {new Date().getFullYear()} Seimons Forge.
           </p>
 
           <div className="flex gap-4 text-xs text-gray-700">
-            <a href="#" className="hover:text-gray-400 transition-colors">Privacidade</a>
-            <a href="#submit" className="hover:text-forge-fire transition-colors">Enviar dor</a>
+            <a href="#" className="hover:text-gray-400 transition-colors">{f.privacy}</a>
+            <a href="#submit" className="hover:text-forge-fire transition-colors">{f.cta}</a>
           </div>
         </div>
       </div>
