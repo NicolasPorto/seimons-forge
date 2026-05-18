@@ -165,40 +165,42 @@ export default function PainFeed() {
   }
 
   return (
-    <section className="py-20 relative">
-      <div className="max-w-6xl mx-auto px-6">
+    <section className="py-12 sm:py-20 relative">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Header */}
-        <div className="text-center mb-10">
+        <div className="text-center mb-8 sm:mb-10">
           <p className="text-forge-fire text-sm font-semibold uppercase tracking-widest mb-3">
             Dores da comunidade
           </p>
-          <h2 className="text-3xl sm:text-4xl font-black text-white mb-4">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white mb-4">
             Você não está sozinho nessa.
           </h2>
-          <p className="text-gray-500 max-w-xl mx-auto">
+          <p className="text-gray-500 text-sm sm:text-base max-w-xl mx-auto">
             Essas são dores enviadas por pessoas reais. Vote nas que você também tem —
             as mais votadas viram produto primeiro.
           </p>
         </div>
 
-        {/* Category filter */}
-        <div className="flex items-center gap-2 mb-8 overflow-x-auto pb-2 scrollbar-hide">
-          <Filter size={14} className="text-gray-600 flex-shrink-0" />
-          {CATEGORIES.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setActiveCategory(cat)}
-              className={`
-                flex-shrink-0 text-xs font-medium px-3 py-1.5 rounded-full border transition-all duration-150
-                ${activeCategory === cat
-                  ? 'bg-orange-500/20 border-orange-500/40 text-orange-400'
-                  : 'bg-forge-card border-forge-border text-gray-500 hover:text-gray-300 hover:border-gray-600'
-                }
-              `}
-            >
-              {cat}
-            </button>
-          ))}
+        {/* Category filter — scroll horizontal isolado com margens negativas */}
+        <div className="-mx-4 sm:-mx-6 px-4 sm:px-6 mb-6 sm:mb-8">
+          <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-hide">
+            <Filter size={14} className="text-gray-600 flex-shrink-0" />
+            {CATEGORIES.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setActiveCategory(cat)}
+                className={`
+                  flex-shrink-0 text-xs font-medium px-3 py-1.5 rounded-full border transition-all duration-150
+                  ${activeCategory === cat
+                    ? 'bg-orange-500/20 border-orange-500/40 text-orange-400'
+                    : 'bg-forge-card border-forge-border text-gray-500 hover:text-gray-300 hover:border-gray-600'
+                  }
+                `}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Grid */}
@@ -212,7 +214,7 @@ export default function PainFeed() {
             <p className="text-gray-700 text-sm">Seja o primeiro a enviar! 👇</p>
           </div>
         ) : (
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {pains.map((pain) => (
               <PainCard
                 key={pain.id}
@@ -227,7 +229,7 @@ export default function PainFeed() {
 
         {/* Load more */}
         {hasMore && !loading && (
-          <div className="flex justify-center mt-8">
+          <div className="flex justify-center mt-6 sm:mt-8">
             <button
               onClick={handleLoadMore}
               disabled={loadingMore}
@@ -244,7 +246,7 @@ export default function PainFeed() {
         )}
 
         {/* CTA */}
-        <div className="text-center mt-10">
+        <div className="text-center mt-8 sm:mt-10">
           <p className="text-gray-600 text-sm mb-3">
             Não achou a sua dor aqui?
           </p>
