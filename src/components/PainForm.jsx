@@ -3,6 +3,7 @@ import { Send, Loader2, CheckCircle2 } from 'lucide-react'
 import toast from 'react-hot-toast'
 import { supabase } from '../lib/supabase'
 import { useLanguage } from '../context/LanguageContext'
+import Select from './Select'
 
 const initialForm = {
   name: '',
@@ -129,18 +130,13 @@ export default function PainForm() {
               <label className="block text-xs font-medium text-gray-400 mb-2">
                 {f.fields.category} <span className="text-red-500">{f.required}</span>
               </label>
-              <select
+              <Select
                 name="category"
                 value={form.category}
                 onChange={handleChange}
-                required
-                className="input-forge appearance-none cursor-pointer"
-              >
-                <option value="" disabled>{f.fields.categoryDefault}</option>
-                {f.categories.map((cat) => (
-                  <option key={cat} value={cat}>{cat}</option>
-                ))}
-              </select>
+                placeholder={f.fields.categoryDefault}
+                options={f.categories.map((cat) => ({ value: cat, label: cat }))}
+              />
             </div>
 
             {/* Description */}
@@ -168,33 +164,25 @@ export default function PainForm() {
                 <label className="block text-xs font-medium text-gray-400 mb-2">
                   {f.fields.frequency}
                 </label>
-                <select
+                <Select
                   name="frequency"
                   value={form.frequency}
                   onChange={handleChange}
-                  className="input-forge appearance-none cursor-pointer"
-                >
-                  <option value="">{f.fields.freqDefault}</option>
-                  {f.frequencies.map((freq) => (
-                    <option key={freq.value} value={freq.value}>{freq.label}</option>
-                  ))}
-                </select>
+                  placeholder={f.fields.freqDefault}
+                  options={f.frequencies}
+                />
               </div>
               <div>
                 <label className="block text-xs font-medium text-gray-400 mb-2">
                   {f.fields.impact}
                 </label>
-                <select
+                <Select
                   name="impact"
                   value={form.impact}
                   onChange={handleChange}
-                  className="input-forge appearance-none cursor-pointer"
-                >
-                  <option value="">{f.fields.impactDefault}</option>
-                  {f.impacts.map((imp) => (
-                    <option key={imp.value} value={imp.value}>{imp.label}</option>
-                  ))}
-                </select>
+                  placeholder={f.fields.impactDefault}
+                  options={f.impacts}
+                />
               </div>
             </div>
 

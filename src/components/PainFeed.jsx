@@ -75,6 +75,7 @@ export default function PainFeed() {
     let query = supabase
       .from('pains')
       .select('id, category, description, current_solution, votes, created_at')
+      .eq('approved', true)
       .order('votes', { ascending: false })
       .order('created_at', { ascending: false })
       .range(from, to)
