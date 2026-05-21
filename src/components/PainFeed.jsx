@@ -8,6 +8,9 @@ import { useLanguage } from '../context/LanguageContext'
 const PAGE_SIZE = 6
 
 function PainCard({ pain, voted, onVote, voting, labels }) {
+  const [expanded, setExpanded] = useState(false)
+  const isLong = pain.description.length > 160
+
   return (
     <div className="card p-5 flex flex-col justify-between gap-4 hover:border-orange-500/20 transition-colors duration-300">
       <div className="flex items-start justify-between gap-3">
@@ -20,12 +23,22 @@ function PainCard({ pain, voted, onVote, voting, labels }) {
         </div>
       </div>
 
-      <p className="text-gray-300 text-sm leading-relaxed flex-1 line-clamp-4 break-words">
-        "{pain.description}"
-      </p>
+      <div className="flex-1">
+        <p className={`text-gray-300 text-sm leading-relaxed break-words ${!expanded && isLong ? 'line-clamp-4' : ''}`}>
+          "{pain.description}"
+        </p>
+        {isLong && (
+          <button
+            onClick={() => setExpanded(v => !v)}
+            className="mt-1.5 text-xs text-orange-500 hover:text-orange-400 transition-colors"
+          >
+            {expanded ? labels.readLess : labels.readMore}
+          </button>
+        )}
+      </div>
 
       {pain.current_solution && (
-        <p className="text-gray-700 text-xs italic truncate">
+        <p className={`text-gray-700 text-xs italic ${expanded ? '' : 'truncate'}`}>
           {labels.today}: {pain.current_solution}
         </p>
       )}

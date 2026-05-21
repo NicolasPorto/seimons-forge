@@ -10,7 +10,7 @@ export const translations = {
       headlineHighlight: 'vira',
       headlinePost: 'produto.',
       sub: 'Conta pra gente o que te trava, o que você faz no braço, o que ainda não existe — e a gente transforma isso numa solução digital real.',
-      tags: 'Automações · Micro SaaS · Plataformas · Integrações',
+      tags: 'Automações · Micro SaaS · Plataformas · Integrações · Landing Pages',
       cta: 'Enviar minha dor agora',
       howItWorks: 'Como funciona',
       stats: [
@@ -46,6 +46,36 @@ export const translations = {
           title: 'Vira um produto real',
           description: 'As dores mais votadas e validadas se tornam automações, micro SaaS ou plataformas. Quem enviou a dor tem acesso prioritário.',
           examples: ['Automação personalizada', 'Micro SaaS', 'Acesso antecipado gratuito'],
+        },
+      ],
+    },
+
+    whatWeBuild: {
+      label: 'O que construímos',
+      heading: 'Da dor ao produto certo.',
+      sub: 'Cada problema tem uma forma ideal de virar solução. Veja o que pode sair daqui.',
+      badge: 'Novo',
+      items: [
+        {
+          title: 'Automações',
+          description: 'Elimine processos manuais e repetitivos com fluxos automáticos que trabalham por você.',
+        },
+        {
+          title: 'Micro SaaS',
+          description: 'Ferramentas web focadas em resolver um único problema, prontas para cobrar e escalar.',
+        },
+        {
+          title: 'Plataformas',
+          description: 'Sistemas completos para gestão, marketplace ou comunidade — quando o problema é maior.',
+        },
+        {
+          title: 'Integrações',
+          description: 'Conecte ferramentas que não se falam: ERPs, CRMs, planilhas, APIs e muito mais.',
+        },
+        {
+          title: 'Landing Pages',
+          description: 'Páginas profissionais de alta conversão para produto, serviço ou evento. Do design ao ar em dias.',
+          isNew: true,
         },
       ],
     },
@@ -99,6 +129,8 @@ export const translations = {
       alreadyVoted: 'Você já votou nessa dor.',
       voteSuccess: 'Voto registrado! 🔥',
       today: 'Hoje',
+      readMore: 'Ler mais',
+      readLess: 'Recolher',
     },
 
     whyShare: {
@@ -188,7 +220,7 @@ export const translations = {
       headlineHighlight: 'becomes',
       headlinePost: 'a product.',
       sub: "Tell us what's holding you back, what you still do manually, what doesn't exist yet — and we'll turn it into a real digital solution.",
-      tags: 'Automations · Micro SaaS · Platforms · Integrations',
+      tags: 'Automations · Micro SaaS · Platforms · Integrations · Landing Pages',
       cta: 'Submit my pain now',
       howItWorks: 'How it works',
       stats: [
@@ -224,6 +256,36 @@ export const translations = {
           title: 'It becomes a real product',
           description: 'The most voted and validated pains become automations, micro SaaS, or platforms. The person who submitted the pain gets priority access.',
           examples: ['Custom automation', 'Micro SaaS', 'Free early access'],
+        },
+      ],
+    },
+
+    whatWeBuild: {
+      label: 'What we build',
+      heading: 'From pain to the right product.',
+      sub: 'Every problem has an ideal solution shape. Here\'s what can come out of Seimons Forge.',
+      badge: 'New',
+      items: [
+        {
+          title: 'Automations',
+          description: 'Eliminate manual and repetitive processes with automated flows that work for you.',
+        },
+        {
+          title: 'Micro SaaS',
+          description: 'Web tools focused on solving one problem, ready to charge and scale.',
+        },
+        {
+          title: 'Platforms',
+          description: 'Full systems for management, marketplace, or community — when the problem is bigger.',
+        },
+        {
+          title: 'Integrations',
+          description: 'Connect tools that don\'t talk to each other: ERPs, CRMs, spreadsheets, APIs, and more.',
+        },
+        {
+          title: 'Landing Pages',
+          description: 'Professional high-conversion pages for products, services, or events. From design to live in days.',
+          isNew: true,
         },
       ],
     },
@@ -277,6 +339,8 @@ export const translations = {
       alreadyVoted: "You've already voted on this pain.",
       voteSuccess:'Vote registered! 🔥',
       today:      'Today',
+      readMore:   'Read more',
+      readLess:   'Show less',
     },
 
     whyShare: {
