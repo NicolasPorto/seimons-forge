@@ -1,8 +1,11 @@
 import { serve } from 'https://deno.land/std@0.168.0/http/server.ts'
 
-const RESEND_API_KEY = Deno.env.get('RESEND_API_KEY') ?? ''
-const NOTIFY_EMAILS  = Deno.env.get('NOTIFY_EMAILS') ?? ''
-const WEBHOOK_SECRET = Deno.env.get('WEBHOOK_SECRET') ?? ''
+const RESEND_API_KEY  = Deno.env.get('RESEND_API_KEY') ?? ''
+const NOTIFY_EMAILS   = Deno.env.get('NOTIFY_EMAILS') ?? ''
+const WEBHOOK_SECRET  = Deno.env.get('WEBHOOK_SECRET') ?? ''
+
+// Fallback hardcoded — remover após confirmar que os secrets funcionam
+const FALLBACK_EMAILS = ['nicolasporto468@gmail.com']
 
 const FREQUENCY_LABELS: Record<string, string> = {
   daily:        'Todos os dias',
@@ -109,12 +112,16 @@ serve(async (req) => {
   }
 
   const pain = payload.record
-  const toEmails = NOTIFY_EMAILS.split(',').map(e => e.trim()).filter(Boolean)
+  const toEmails = NOTIFY_EMAILS
+    .split(',')
+    .map(e => e.trim().replace(/^["'\s]+|["'\s]+$/g, ''))
+    .filter(e => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e))
 
-  if (toEmails.length === 0) {
-    console.error('NOTIFY_EMAILS not configured')
-    return new Response('NOTIFY_EMAILS not configured', { status: 500 })
-  }
+  console.log('NOTIFY_EMAILS raw:', JSON.stringify(NOTIFY_EMAILS))
+  console.log('toEmails parsed:', JSON.stringify(toEmails))
+
+  const finalEmails = toEmails.length > 0 ? toEmails : FALLBACK_EMAILS
+  console.log('finalEmails:', JSON.stringify(finalEmails))
 
   const emailRes = await fetch('https://api.resend.com/emails', {
     method: 'POST',
@@ -124,7 +131,7 @@ serve(async (req) => {
     },
     body: JSON.stringify({
       from: 'Seimons Forge <onboarding@resend.dev>',
-      to: toEmails,
+      to: finalEmails,
       subject: `Nova dor recebida: ${pain.category ?? 'sem categoria'}`,
       html: buildHtml(pain),
     }),
